@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HotScope TV</title>
+<title>Hood Media</title>
 
 <style>
 *{
@@ -28,14 +28,12 @@ max-width:420px;
 position:relative;
 }
 
-/* IKLAN */
 .ad-box{
 width:100%;
 margin:12px 0;
 text-align:center;
 }
 
-/* VIDEO */
 video{
 width:100%;
 border-radius:12px;
@@ -43,14 +41,12 @@ background:#000;
 display:none;
 }
 
-/* TITLE */
 .title{
 font-size:16px;
 margin:12px 0;
 text-align:center;
 }
 
-/* LOADING */
 .loading-box{
 position:absolute;
 top:0;
@@ -85,7 +81,6 @@ height:100%;
 background:#00ffcc;
 }
 
-/* COUNTDOWN */
 .countdown-box{
 position:absolute;
 top:0;
@@ -109,7 +104,6 @@ text-align:center;
 position:relative;
 }
 
-/* tombol close */
 .close-btn{
 position:absolute;
 top:6px;
@@ -220,8 +214,15 @@ progressBar.style.width = progress + "%";
 }, 300);
 
 
-// TIMER IKLAN (TANPA PAUSE VIDEO)
+// 🔥 IKLAN HANYA SEKALI
+let adShown = false;
+let adClosed = false;
+
 setTimeout(() => {
+
+if(adShown || adClosed) return;
+
+adShown = true;
 
 let countdown = 5;
 const box = document.getElementById("countdownBox");
@@ -242,15 +243,20 @@ clearInterval(interval);
 // buka tab baru
 window.open("https://www.profitablecpmratenetwork.com/f3brs4ymgv?key=0f1a89dcb276c63876ce1d45eff671d8", "_blank");
 
+// auto hide setelah buka iklan
+box.style.display = "none";
+
 }
 
 }, 1000);
 
 }, 20000);
 
-// fungsi close
+
+// ❌ CLOSE BUTTON
 function closeAd(){
 document.getElementById("countdownBox").style.display = "none";
+adClosed = true; // supaya tidak muncul lagi
 }
 </script>
 
