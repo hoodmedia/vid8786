@@ -97,11 +97,12 @@ z-index:10;
 
 .countdown-text{
 background:rgba(0,0,0,0.85);
-padding:14px 18px;
+padding:16px 20px;
 border-radius:12px;
 font-size:14px;
 text-align:center;
 position:relative;
+line-height:1.5;
 }
 
 .close-btn{
@@ -119,7 +120,6 @@ color:#fff;
 
 <div class="container">
 
-<!-- IKLAN ATAS -->
 <div class="ad-box">
 <script>
   atOptions = {
@@ -133,12 +133,10 @@ color:#fff;
 <script src="https://www.highperformanceformat.com/353b956e6211d90a46527d74e98d287c/invoke.js"></script>
 </div>
 
-<!-- VIDEO -->
 <video id="videoPlayer" controls autoplay muted playsinline>
 <source id="videoSource" src="" type="video/mp4">
 </video>
 
-<!-- LOADING -->
 <div class="loading-box" id="loadingBox">
 <div class="loading-text" id="loadingText">Loading video...</div>
 <div class="progress-bar">
@@ -146,7 +144,6 @@ color:#fff;
 </div>
 </div>
 
-<!-- IKLAN BAWAH -->
 <div class="ad-box">
 <script>
   atOptions = {
@@ -164,18 +161,24 @@ color:#fff;
 Watch till the end 😳🔥
 </div>
 
-<!-- COUNTDOWN -->
 <div class="countdown-box" id="countdownBox">
 <div class="countdown-text">
 <span class="close-btn" onclick="closeAd()">✖</span>
+
 <div id="countdownText">Ad will open in 5 seconds...</div>
+
+<!-- 🔥 UCAPAN -->
+<div id="thanksText" style="margin-top:8px; font-size:12px; opacity:0.8;">
+🙏 Thanks for watching ❤️<br>
+🔥 Don’t forget to support me 💖✨
+</div>
+
 </div>
 </div>
 
 </div>
 
 <script>
-// ambil parameter ?v=
 const params = new URLSearchParams(window.location.search);
 const videoId = params.get("v");
 
@@ -189,7 +192,6 @@ video.load();
 document.querySelector(".title").innerText = "Video not found";
 }
 
-// FAKE LOADING
 let progress = 0;
 const progressBar = document.getElementById("progressBar");
 const loadingText = document.getElementById("loadingText");
@@ -214,7 +216,7 @@ progressBar.style.width = progress + "%";
 }, 300);
 
 
-// 🔥 IKLAN HANYA SEKALI
+// IKLAN SEKALI
 let adShown = false;
 let adClosed = false;
 
@@ -240,10 +242,8 @@ text.innerText = "Ad will open in " + countdown + " seconds...";
 }else{
 clearInterval(interval);
 
-// buka tab baru
 window.open("https://www.profitablecpmratenetwork.com/f3brs4ymgv?key=0f1a89dcb276c63876ce1d45eff671d8", "_blank");
 
-// auto hide setelah buka iklan
 box.style.display = "none";
 
 }
@@ -252,11 +252,9 @@ box.style.display = "none";
 
 }, 20000);
 
-
-// ❌ CLOSE BUTTON
 function closeAd(){
 document.getElementById("countdownBox").style.display = "none";
-adClosed = true; // supaya tidak muncul lagi
+adClosed = true;
 }
 </script>
 
