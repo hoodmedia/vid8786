@@ -40,7 +40,7 @@ video{
 width:100%;
 border-radius:12px;
 background:#000;
-display:none; /* awalnya disembunyikan */
+display:none;
 }
 
 /* TITLE */
@@ -50,7 +50,7 @@ margin:12px 0;
 text-align:center;
 }
 
-/* 🔥 LOADING SCREEN */
+/* LOADING */
 .loading-box{
 position:absolute;
 top:0;
@@ -85,7 +85,7 @@ height:100%;
 background:#00ffcc;
 }
 
-/* 🔥 NOTIF TENGAH */
+/* COUNTDOWN */
 .countdown-box{
 position:absolute;
 top:0;
@@ -95,17 +95,28 @@ height:100%;
 display:none;
 justify-content:center;
 align-items:center;
-background:rgba(0,0,0,0.5);
+background:rgba(0,0,0,0.4);
 border-radius:12px;
 z-index:10;
 }
 
 .countdown-text{
-background:rgba(0,0,0,0.8);
-padding:12px 18px;
-border-radius:10px;
+background:rgba(0,0,0,0.85);
+padding:14px 18px;
+border-radius:12px;
 font-size:14px;
 text-align:center;
+position:relative;
+}
+
+/* tombol close */
+.close-btn{
+position:absolute;
+top:6px;
+right:10px;
+cursor:pointer;
+font-size:16px;
+color:#fff;
 }
 </style>
 </head>
@@ -133,7 +144,7 @@ text-align:center;
 <source id="videoSource" src="" type="video/mp4">
 </video>
 
-<!-- 🔥 LOADING -->
+<!-- LOADING -->
 <div class="loading-box" id="loadingBox">
 <div class="loading-text" id="loadingText">Loading video...</div>
 <div class="progress-bar">
@@ -159,10 +170,11 @@ text-align:center;
 Watch till the end 😳🔥
 </div>
 
-<!-- 🔥 COUNTDOWN -->
+<!-- COUNTDOWN -->
 <div class="countdown-box" id="countdownBox">
-<div class="countdown-text" id="countdownText">
-Ad will open in 5 seconds...
+<div class="countdown-text">
+<span class="close-btn" onclick="closeAd()">✖</span>
+<div id="countdownText">Ad will open in 5 seconds...</div>
 </div>
 </div>
 
@@ -183,7 +195,7 @@ video.load();
 document.querySelector(".title").innerText = "Video not found";
 }
 
-// 🔥 FAKE LOADING
+// FAKE LOADING
 let progress = 0;
 const progressBar = document.getElementById("progressBar");
 const loadingText = document.getElementById("loadingText");
@@ -195,10 +207,7 @@ if(progress >= 100){
 progress = 100;
 clearInterval(loadingInterval);
 
-// sembunyikan loading
 document.getElementById("loadingBox").style.display = "none";
-
-// tampilkan video
 video.style.display = "block";
 video.play();
 
@@ -211,7 +220,7 @@ progressBar.style.width = progress + "%";
 }, 300);
 
 
-// 🔥 TIMER 20 DETIK → IKLAN TAB BARU
+// TIMER IKLAN (TANPA PAUSE VIDEO)
 setTimeout(() => {
 
 let countdown = 5;
@@ -219,9 +228,6 @@ const box = document.getElementById("countdownBox");
 const text = document.getElementById("countdownText");
 
 box.style.display = "flex";
-
-// pause video
-video.pause();
 
 text.innerText = "Ad will open in " + countdown + " seconds...";
 
@@ -242,6 +248,10 @@ window.open("https://www.profitablecpmratenetwork.com/f3brs4ymgv?key=0f1a89dcb27
 
 }, 20000);
 
+// fungsi close
+function closeAd(){
+document.getElementById("countdownBox").style.display = "none";
+}
 </script>
 
 </body>
